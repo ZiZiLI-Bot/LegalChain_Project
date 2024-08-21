@@ -14,10 +14,8 @@ import { useState } from 'react';
 const { Dragger } = Upload;
 
 type DataUploadRes = {
-  data: {
-    url: string;
-    name: string;
-  };
+  url: string;
+  name: string;
 };
 
 export default function CreateDocs() {
@@ -29,12 +27,12 @@ export default function CreateDocs() {
   const mintToken = new PublicKey('DKc1k886G6ZQgS4zZRZzLhJinQ7C3DBfw9sFcZwzhYXh');
   const [fileURL, setFileURL] = useState<string>('');
   const [fileHash, setFileHash] = useState<string>('');
-  const [fileName, setFileName] = useState<string>('');
+  const [fileName, setFileName] = useState<string>('THE DEMOFILE');
   const [loading, setLoading] = useState<boolean>(false);
   const props: UploadProps = {
     name: 'file',
     multiple: false,
-    action: 'https://api.paperread.chuhung.com/api/v1/upload',
+    action: 'https://upload.chuhung.com/upload?bucket=mystorage',
     onChange(info) {
       const { status } = info.file;
       if (status !== 'uploading') {
@@ -53,8 +51,8 @@ export default function CreateDocs() {
             console.log('Hash:', hash);
             setFileHash(hash);
             const res = info.file.response as DataUploadRes;
-            setFileURL(res.data.url);
-            setFileName(res.data.name);
+            setFileURL(res.url);
+            // setFileName(res.name);
           }
         };
         reader.readAsArrayBuffer(info.file.originFileObj as File);

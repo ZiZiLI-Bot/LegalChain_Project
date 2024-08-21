@@ -1,0 +1,8 @@
+{
+  "rules": [
+    {
+      "pathPattern": "/dashboard/signature/**",
+      "apiPath": "http://localhost:3000/action-signature/**"
+    }
+  ]
+}
